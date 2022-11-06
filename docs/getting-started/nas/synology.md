@@ -21,15 +21,54 @@ PhotoPrism and MariaDB on ARMv7-based entry-level devices like the Synology DS21
 
 ## Setup using Docker ##
 
-!!! attention ""
-    The Synology user interface has been updated in the meantime, so the screenshots from the tutorial below may be outdated. Also, we recommend using mariadb instead of SQlite.
+#### Prerequisites
 
-    Since we don't have a Synology test device, contributions to a step-by-step tutorial are greatly appreciated.
-    You can contribute by clicking :material-pencil: to send a pull request with your changes.
+- Docker is installed on your Synology NAS
+- subfolders "config" and "photos" are created in your docker folder
+- "photos" will contain the pictures you want to manage in PhotoPrism. You can either move them there or create a link to your pictures. For starters just copy some pictures into the "photos" folder to test your set-up
 
-You can follow these instructions to install PhotoPrism on your Synology NAS:
+![Photoprism_1](https://user-images.githubusercontent.com/106486840/200167971-af702c8e-b489-4e81-9141-00420799e216.jpg)
 
-https://www.wundertech.net/how-to-setup-photoprism-on-a-synology-nas
+#### Get the image
+
+- In Docker - Registry search for photoprism/photoprism
+- choose the tag to define which build you want to use
+- wait for the message that the image was downloaded (it is big, downloading can take a while)
+- double-click on the image to create a new container
+
+#### Edit Settings
+
+- give your container a name
+- click on advanced settings
+
+![Photoprism_2](https://user-images.githubusercontent.com/106486840/200168040-b2aebb9d-5633-4386-ba18-6d493d0f1c26.PNG)
+
+- add your password
+
+![Photoprism_3](https://user-images.githubusercontent.com/106486840/200168063-59d71c58-fad5-44ee-94df-f910200a6f37.PNG)
+
+- add database settings
+
+![Photoprism_4](https://user-images.githubusercontent.com/106486840/200168093-b19a6df5-b0f9-4932-ab0d-3c536557abfa.PNG)
+
+- define your local port
+
+![Photoprism_5](https://user-images.githubusercontent.com/106486840/200168115-334c974e-841f-4cf0-921a-d71425d6db36.PNG)
+
+
+#### Add Volumes
+
+you need to link your subfolders (see prerequisites) to the photoprism volumes
+
+![Photoprism_6](https://user-images.githubusercontent.com/106486840/200168182-4248115b-7209-4fea-910d-c5ab584830dc.PNG)
+![Photoprism_7](https://user-images.githubusercontent.com/106486840/200168189-2484fd77-5249-41af-96b0-0b1efc698d9e.PNG)
+![Photoprism_8](https://user-images.githubusercontent.com/106486840/200168194-14ccb698-53d2-41b2-88d9-cc3026ca4d9f.PNG)
+
+#### Start your container
+
+- Start your container and give it some minutes to create. Then access the webpage using your Synology NAS’s IP address and port 8080.
+- Log in with the username admin and the password you created in the environment variables.
+- After you’re logged in, select Library, then Start. This will trigger the indexing of your pictures. Depending on your hardware and the amount of pictures this can take a long time (even days).
 
 ### Will my device be fast enough? ###
 
